@@ -1,3 +1,11 @@
-age = int(input("Enter your age: "))
-new_age = age + 50
-print(new_age)
+def age_foo(age):
+    new_age = float(age) + 50
+    return new_age
+
+
+age = float(input("Enter your age:"))
+
+if age < 150:
+    print(age_foo(age))
+else:
+    print("How is that possible?")
