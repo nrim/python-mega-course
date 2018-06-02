@@ -3,14 +3,16 @@ from difflib import get_close_matches
 
 data = json.load(open("data.json"))
 
+
 def translate(word):
-    word=word.lower()
+    """Return definitions of the entered word."""
+    word = word.lower()
     if word in data:
         return data[word]
     elif len(get_close_matches(word, data.keys())) > 0:
-        yn = input("Did you mean %s instead? Enter Y if yes, or N if no: "
-                   % get_close_matches(word, data.keys())[0])
-        if yn.lower() == "y":
+        answer = input("Did you mean %s instead? Enter Y if yes, or N if no: "
+                       % get_close_matches(word, data.keys())[0])
+        if answer.lower() == "y":
             return data[get_close_matches(word, data.keys())[0]]
         else:
             return "Word not found"
@@ -18,6 +20,11 @@ def translate(word):
         return "Word not found."
 
 
-word = input("Enter word: ")
+inputWord = input("Enter word: ")
 
-print(translate(word))
+output = translate(inputWord)
+if type(output) == list:
+    for item in output:
+        print(item)
+else:
+    print(output)
