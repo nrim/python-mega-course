@@ -9,6 +9,10 @@ def translate(word):
     word = word.lower()
     if word in data:
         return data[word]
+    elif word.capitalize() in data:
+        return data[word.capitalize()]
+    elif word.upper() in data:
+        return data[word.upper()]
     elif len(get_close_matches(word, data.keys())) > 0:
         answer = input("Did you mean %s instead? Enter Y if yes, or N if no: "
                        % get_close_matches(word, data.keys())[0])
